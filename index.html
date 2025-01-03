@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Learning Assistant</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --accent: #ff5722;
+            --dark: #333;
+            --light: #fff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        .about-section {
+            padding: 4rem 5%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: var(--light);
+            text-align: center;
+            border-top: 5px solid var(--primary);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .about-section p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #f1f1f1;
+            font-weight: 400;
+        }
+        /* Enhanced Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: rgba(255, 255, 255, 0.98);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            color: var(--accent);
+            font-weight: 800;
+            font-size: 1.5rem;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            background-color: rgba(255, 87, 34, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-btn {
+            padding: 0.8rem 1.2rem;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Enhanced Main Content */
+        .main-content {
+            display: flex;
+            padding: 7rem 5% 4rem;
+            align-items: center;
+            min-height: 100vh;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .left-section {
+            flex: 1;
+            animation: fadeInLeft 1s ease;
+        }
+
+        .company-logo {
+            margin-top: 60px;
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            line-height: 1.2;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Enhanced Class Buttons */
+        .class-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .class-btn {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .class-btn:hover, .class-btn.active {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Enhanced CTA Button */
+        .cta-button {
+            width: auto;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Enhanced Image Container */
+        .image-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .circle-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            opacity: 0.1;
+        }
+
+        .student-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .offer-text {
+    margin-top: 2rem; /* Add margin to prevent merging with the button */
+    font-size: 1.1rem;
+    color: #666;
+}
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: var(--dark);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-content {
+                padding: 6rem 5% 3rem;
+                gap: 3rem;
+            }
+
+            .image-container {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 80px 5%;
+                transition: 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .main-content {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 5rem;
+            }
+
+            .image-container {
+                width: 250px;
+                height: 250px;
+                margin: 0 auto;
+            }
+
+            .cta-button {
+                text-decoration: none;
+                width: 100%;
+                max-width: 300px;
+                margin: 2rem auto;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .main-content {
+                padding: 4rem 1rem 2rem;
+            }
+
+            .image-container {
+                width: 200px;
+                height: 200px;
+            }
+
+            .class-buttons {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                gap: 0.8rem;
+            }
+
+            .class-btn {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">OLIVE ORANGE</div>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="nav-links">
+            <a href="about" class="nav-btn">ABOUT</a>
+            <a href="signup.html" class="nav-btn">STUDENT</a>
+            <a href="signup.html" class="nav-btn">TEACHER</a>
+            <a href="tel:123456789" class="nav-btn">📞 123456789</a>
+            <a href="booknow.html" class="nav-btn primary">Book a FREE Trial</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="left-section">
+            <img src="Assests/olive_orange_logo.png" alt="Logo" class="company-logo">
+            <h1>AI LEARNING ASSISTANT</h1>
+            <p class="subtitle">TRANSFORMATIVE TOOL DESIGNED TO SUPPORT BOTH TEACHERS AND STUDENTS IN SCHOOL EDUCATION</p>
+            
+            <p style="font-size: 1.2rem; color: var(--primary); font-weight: 600; margin-bottom: 1rem;">
+                BOOK YOUR FREE LEARNING BY YOUR CURRENT STANDARD
+            </p>
+            
+            <div class="class-buttons">
+                <button class="class-btn">Class 6</button>
+                <button class="class-btn">Class 7</button>
+                <button class="class-btn">Class 8</button>
+                <button class="class-btn">Class 9</button>
+                <button class="class-btn">Class 10</button>
+                <button class="class-btn">Class 11</button>
+                <button class="class-btn">Class 12</button>
+               
+            </div>
+
+            <a href="booknow.html" class="cta-button">Explore Now</a>
+             <!-- <button class="cta-button">Explore Now</button> -->
+            
+            <p class="offer-text">
+                
+                ₹0 For First Class 100% off<br>
+                Booked A Demo Already? <a href="#" class="join-link">JOIN NOW →</a>
+            </p>
+        </div>
+        
+        <div class="image-container">
+            <div class="circle-bg"></div>
+            <img src="Assests/AI-students.jpeg" alt="Happy student" class="student-image">
+        </div>
+    </div>
+    <section id="about" class="about-section">
+        <h2>About Us</h2>
+        <p>
+            Welcome to Olive Orange, your AI-powered learning assistant designed to transform education for students and teachers alike. 
+            Our platform offers personalized solutions to make learning engaging, efficient, and accessible for all.
+        </p>
+      
+    </section>
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const links = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        document.querySelectorAll('.class-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.class-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

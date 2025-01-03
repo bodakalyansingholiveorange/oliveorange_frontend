@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Learning Session</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .booking-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .booking-left {
+            flex: 1;
+            padding: 3rem;
+            background: #fff;
+        }
+
+        .booking-right {
+            flex: 1;
+            background: #4CAF50;
+            padding: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-shapes div {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .shape1 { width: 100px; height: 100px; top: 10%; right: -20px; }
+        .shape2 { width: 150px; height: 150px; bottom: 20%; left: -40px; }
+        .shape3 { width: 70px; height: 70px; top: 50%; right: 30%; }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .booking-right h2 {
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76,175,80,0.1);
+        }
+
+        .submit-btn {
+            text-decoration: none;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76,175,80,0.2);
+        }
+
+        .features {
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .feature-icon {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .success-message {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #4CAF50;
+            color: white;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .booking-container {
+                flex-direction: column;
+            }
+
+            .booking-left, .booking-right {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-container">
+        <div class="booking-left">
+            <h2>Book Your Free Trial</h2>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Create Password</label>
+                    <input type="password" id="password" required placeholder="Create a secure password">
+                </div>
+                <div class="form-group">
+                    <label for="standard">Select Your Class</label>
+                    <select id="standard" required>
+                        <option value="">Choose your class</option>
+                        <option value="6">Class 6</option>
+                        <option value="7">Class 7</option>
+                        <option value="8">Class 8</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                </div>
+                <a href="tutor.html" class="submit-btn">Start Learning Now</a>
+                <!-- <button type="submit" class="submit-btn">Start Learning Now</button> -->
+            </form>
+        </div>
+        <div class="booking-right">
+            <div class="floating-shapes">
+                <div class="shape1"></div>
+                <div class="shape2"></div>
+                <div class="shape3"></div>
+            </div>
+            <h2>Why Choose Us?</h2>
+            <div class="features">
+                <div class="feature-item">
+                    <span class="feature-icon">🎯</span>
+                    <div>Personalized Learning Path</div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🤖</span>
+                    <div>AI-Powered Assistant 24/7</div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📚</span>
+                    <div>Comprehensive Study Material</div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🎓</span>
+                    <div>Expert Teachers Support</div>
+                </div>
+            </div>
+        </div>
+        <div class="success-message" id="successMessage">
+            <h2>🎉 Registration Successful!</h2>
+            <p>Welcome to your learning journey. Check your email for next steps.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const standard = document.getElementById('standard').value;
+
+            try {
+                const response = await fetch('/signup/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password,
+                        standard
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    const successMessage = document.getElementById('successMessage');
+                    successMessage.style.display = 'flex';
+                    successMessage.style.animation = 'fadeIn 0.5s ease-in';
+                    
+                    // Redirect to dashboard or learning page after 3 seconds
+                    setTimeout(() => {
+                        window.location.href = '/subjects/';
+                    }, 3000);
+                } else {
+                    alert(data.error || 'Registration failed. Please try again.');
+                }
+            } catch (error) {
+                alert('An error occurred. Please try again later.');
+            }
+        });
+
+        // Add animation to form inputs
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', (e) => {
+                e.target.parentElement.style.transform = 'translateY(-5px)';
+                e.target.parentElement.style.transition = 'all 0.3s';
+            });
+
+            input.addEventListener('blur', (e) => {
+                e.target.parentElement.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
